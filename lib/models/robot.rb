@@ -4,12 +4,16 @@ module ToyRobot
 
     attr_reader :position
 
-    def initialize(position = 0)
-      @position = position
+    def initialize(x, y)
+      @position = [x, y]
     end
 
-    def move
+    def move_east
       @position += 1
+    end
+
+    def move_west
+      @position -= 1
     end
 
   end
