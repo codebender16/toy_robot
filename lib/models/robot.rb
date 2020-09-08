@@ -10,6 +10,13 @@ class Robot
     end
 
   # methods for rotation left or right
+    
+    def turn(rotation)
+      case rotation
+        when 'LEFT' then turn_left
+        when 'RIGHT' then turn_right
+      end
+    end
 
     def turn_left
       @direction = DIRECTIONS[DIRECTIONS.index(@direction) - 1]
