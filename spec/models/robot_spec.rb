@@ -1,20 +1,22 @@
 require 'spec_helper'
 require_relative '../../lib/models/robot.rb'
 
-RSpec.describe ToyRobot::Robot do
-  subject { ToyRobot::Robot.new(0,0, 'NORTH') }
+RSpec.describe Robot do
+  
+  subject { Robot.new(0,0, 'NORTH') }
 
-  #1 test for original position when placed
+  #1 test  original position when placed
 
-  context 'original position' do
+  context 'when placed' do
     it 'should place robot with position provided by command' do
       expect(subject.position).to eq([0,0])
     end
   end
 
-  #2 test for movements of robot
+  #2 test  movements of robot
 
-  context 'movements of robot' do
+  context 'when robot is moving' do
+
     it 'moves 2 steps east' do
       2.times { subject.move_east }
       expect(subject.position).to eq([2, 0])
@@ -37,14 +39,46 @@ RSpec.describe ToyRobot::Robot do
 
   end
   
-  #3 test for direction robot is facing
+  #3 test direction robot is facing
 
-  context 'the direction the robot is facing' do
+  context 'when robot is moving with direction' do
+  
+    subject { Robot.new(0,0, 'WEST') }
 
-    it 'show the correct direction' do
+    it 'should have a direction' do
+      expect(subject.direction).to eq('WEST')
+    end
+    # the left of WEST is SOUTH and right of WEST is NORTH
+    it 'should be able to turn left' do
+      subject.turn_left
+      expect(subject.direction).to eq('SOUTH')
+    end
+    
+    it 'should be able to turn right' do
+      subject.turn_right
       expect(subject.direction).to eq('NORTH')
     end
 
+    it 'should only move in the current direction' do
+      2.times { subject.move }
+      expect(subject.position).to eq([-2, 0])
+    end
+
+  end
+
+  context 'reporting' do
+
+    subject { Robot.new(2, 3, 'WEST') }
+
+    it 'should print an output of the robot current position and direction' do
+      expect(subject.report).to eq({
+        x: 2,
+        y: 3,
+        direction: 'WEST' 
+      })
+    end
+
+    
   end
 
 end
