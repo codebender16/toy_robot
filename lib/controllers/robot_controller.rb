@@ -30,6 +30,8 @@ class RobotController
       commands.each do |command|
         case command
           when 'MOVE' then @robot.move
+          when 'LEFT' then @robot.turn_left
+          when 'RIGHT' then @robot.turn_right
           when 'REPORT' then @robot.report
         end
       end

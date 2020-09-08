@@ -47,8 +47,32 @@ RSpec.describe RobotController do
 
   context 'execution of commands' do
 
-    it 'should execute MOVE method in ' do
+    it 'should execute move for MOVE' do
+      subject.place(0, 0, 'NORTH')
+      subject.execute([
+        'MOVE',
+        'MOVE',
+        'REPORT'
+      ])
+      expect(subject.robot.position).to eq([0, 2])
+      # expect(subject.report).to eq([])
+    end
 
+    it 'should execute report for REPORT' do
+      subject.place(0, 0, 'NORTH')
+      subject.execute([
+        'MOVE',
+        'MOVE',
+        'RIGHT',
+        'MOVE',
+        'REPORT'
+      ])
+      expect(subject.robot.report).to eq({
+        x: 1,
+        y: 2,
+        direction: 'EAST'
+      })
+      # expect(subject.report).to eq([])
     end
 
   end
