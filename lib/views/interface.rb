@@ -105,7 +105,7 @@ class Interface
 # 4. CONFIRM COMMANDS - RETURN TRUE/FALSE
   def confirm_commands(commands)
     spin()
-    print "This is your #{commands}\n"
+    print "These are your commands #{commands}\n"
 
     return decision = @prompt.yes?("Are you sure you would like to execute these commands?", convert: :boolean)
 
