@@ -30,6 +30,12 @@ Alternatively, you can go to my [Github](https://github.com/codebender16/toy_rob
 
 After cloning, please run the following command to install all the dependencies in order to run the program successfully.
 
+If you do not have bundler installed, please have it installed before running the next command.
+
+```
+  gem install bundler
+```
+
 ```
   bundle install
 ```
