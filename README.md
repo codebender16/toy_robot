@@ -91,3 +91,25 @@ developing your solution.
 Please engineer your solution to a standard you consider suitable for
 production. It is not required to provide any graphical output showing the
 movement of the toy robot.
+
+# TOYROBOT SOLUTION 
+
+## Installation
+
+The program runs on Ruby version 2.7.1 
+
+Before starting, please clone the project into your local server from the following source
+
+```
+  git clone git@github.com:codebender16/toy_robot.git
+```
+
+Alternatively, you can go to my [Github](https://github.com/codebender16/toy_robot) to clone.
+
+After cloning, please run the following commands to install all the dependencies in order to run the program successfully.
+
+```
+  bundle install
+```
+
+

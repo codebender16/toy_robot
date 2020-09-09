@@ -5,3 +5,7 @@ source "https://rubygems.org"
 # gem "rails"
 
 gem "rspec"
+gem "tty-prompt"
+gem "colorize"
+gem 'tty-spinner'
+gem 'tty-font'

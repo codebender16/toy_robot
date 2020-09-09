@@ -32,15 +32,16 @@ RSpec.describe RobotController do
       expect(subject.commands).to be_nil
     end
 
-    it 'should only consider instructions after PLACE' do
+    it 'should only consider instructions after the first PLACE' do
       subject.sanitise_input([
         'MOVE',
-        'PLACE',
+        ['PLACE', 0, 0, 'NORTH'],
         'MOVE',
         'LEFT',
+        ['PLACE', 2, 3, 'WEST'],
         'REPORT'
       ])
-      expect(subject.commands).to eq(['PLACE', 'MOVE', 'LEFT', 'REPORT'])
+      expect(subject.commands).to eq([['PLACE', 0, 0, 'NORTH'], 'MOVE', 'LEFT', ['PLACE', 2, 3, 'WEST'],  'REPORT'])
     end
 
   end
@@ -52,9 +53,11 @@ RSpec.describe RobotController do
       subject.execute([
         'MOVE',
         'MOVE',
+        'RIGHT',
+        'MOVE',
         'REPORT'
       ])
-      expect(subject.robot.position).to eq([0, 2])
+      expect(subject.robot.position).to eq([1, 2])
       # expect(subject.report).to eq([])
     end
 
@@ -73,6 +76,35 @@ RSpec.describe RobotController do
         direction: 'EAST'
       })
       # expect(subject.report).to eq([])
+    end
+
+  end
+
+  context 'moving in valid locations' do
+
+    it 'should ignore invalid move' do
+      subject.place(0, 0, 'WEST')
+      subject.execute([
+        'MOVE',
+        'RIGHT',
+        'MOVE',
+        'MOVE',
+        'REPORT'
+      ])
+      expect(subject.robot.position).to eq([0, 2])
+    end
+
+    it 'should not move to invalid location' do
+      subject.place(0, 0, 'NORTH')
+      subject.execute([
+        'MOVE',
+        'MOVE',
+        'LEFT',
+        'MOVE',
+        'MOVE',
+        'REPORT'
+      ])
+      expect(subject.robot.position).to eq([0, 2])
     end
 
   end
