@@ -10,13 +10,6 @@ class Robot
     end
 
   # methods for rotation left or right
-    
-    # def turn(rotation)
-    #   case rotation
-    #     when 'LEFT' then turn_left
-    #     when 'RIGHT' then turn_right
-    #   end
-    # end
 
     def turn_left
       @direction = DIRECTIONS[DIRECTIONS.index(@direction) - 1]
@@ -29,13 +22,6 @@ class Robot
         @direction = DIRECTIONS[DIRECTIONS.index(@direction) + 1]
       end
     end
-
-    # source from reference - understand how ti works but don't normally use rotate
-
-    # def turn_right
-    #   index = DIRECTIONS.index(@direction)
-    #   @direction = DIRECTIONS.rotate(1)[index]
-    # end
 
     # methods for movements of Robot
 
@@ -64,7 +50,7 @@ class Robot
       @position[1] -= 1
     end
 
-    # report 
+    # generate object for report to be used in robot_controller during execution
 
     def report
       return {
@@ -73,6 +59,7 @@ class Robot
         direction: @direction
       }
     end
+
 
 
 end

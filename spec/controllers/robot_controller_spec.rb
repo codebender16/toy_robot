@@ -82,13 +82,16 @@ RSpec.describe RobotController do
 
   context 'moving in valid locations' do
 
-    it 'should raise error if location is invalid' do
+    it 'should ignore invalid move' do
       subject.place(0, 0, 'WEST')
       subject.execute([
         'MOVE',
+        'RIGHT',
+        'MOVE',
+        'MOVE',
         'REPORT'
       ])
-      expect(subject.valid_move?).to eq("Robot can only move within the table")
+      expect(subject.robot.position).to eq([0, 2])
     end
 
     it 'should not move to invalid location' do

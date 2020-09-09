@@ -1,5 +1,6 @@
 require_relative '../models/robot.rb'
 require_relative '../models/table.rb'
+require 'colorize'
 
 
 class RobotController
@@ -16,7 +17,7 @@ class RobotController
 # check for validity of position before placing the robot
   def place(x, y, direction)
     if not @table.valid_location?(x, y)
-      return 'invalid location'
+      return 'Invalid location to place robot'
     else
     # create a robot in Robot class
       @robot = Robot.new(x,y, direction)
@@ -24,23 +25,17 @@ class RobotController
   end
 
   def execute(commands)
-  # only executes when robot is placed
   # the below place case would be the second PLACE input from user
-    if on_table?
       # execute commands
       commands.each do |command|
         case command
-          when 'PLACE' then place(command[1], command[2], command[3])
+          when command[0] == 'PLACE' then place(command[1], command[2], command[3])
           when 'MOVE' then valid_move?
           when 'LEFT' then @robot.turn_left
           when 'RIGHT' then @robot.turn_right
-          when 'REPORT' then @robot.report
+          when 'REPORT' then puts "Your report output > #{@robot.report[:x]}, #{@robot.report[:y]}, #{@robot.report[:direction]}"
         end
       end
-    else 
-      # ignore commands 
-      return on_table? # this will be used in the menu
-    end 
 
   end
 
@@ -63,7 +58,7 @@ class RobotController
     # check for valid position
   
     if not @table.valid_location?(x, y)
-      return "Robot can only move within the table"
+      # don't do anything if invalid
     else 
       @robot.move
     end
@@ -72,13 +67,13 @@ class RobotController
 
   # check for PLACE from user input array
 
-  def sanitise_input(input)
+  def sanitise_input(commands)
     # example input [['PLACE', x, y, f], MOVE, MOVE, ['PLACE', x, y, f]]
     # loop to check if PLACE is within the 2D array
-    input.each do |item|
-      if item.include?('PLACE')
-        index = input.index(item)
-        @commands = input.slice(index, input.length)
+    commands.each do |command|
+      if command.include?('PLACE')
+        index = commands.index(command)
+        return @commands = commands.slice(index, commands.length)
         break
       end
     end

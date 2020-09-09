@@ -7,3 +7,5 @@ source "https://rubygems.org"
 gem "rspec"
 gem "tty-prompt"
 gem "colorize"
+gem 'tty-spinner'
+gem 'tty-font'
