@@ -4,6 +4,8 @@
 
 The program runs on Ruby version 2.7.1. If you don't have ruby installed, here is a guide for [ruby installation](https://www.ruby-lang.org/en/documentation/installation/)
 
+Gems used for terminal app:
+
 ```
 gem "rspec"
 gem "tty-prompt"
