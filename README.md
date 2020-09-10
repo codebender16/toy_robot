@@ -1,14 +1,8 @@
 # TOYROBOT SOLUTION 
 
-# Tech Stack
+# Tech Stack and Dependencies
 
 The program runs on Ruby version 2.7.1. If you don't have ruby installed, here is a guide for [ruby installation](https://www.ruby-lang.org/en/documentation/installation/)
-
-Principles:
-1. MVC
-2. OOP
-
-Gem list:
 
 ```
 gem "rspec"
@@ -58,6 +52,12 @@ The source code lives in the `lib` folder and are categorised by the MVC model.
 
 In the `spec` folder, there are files containing in each sub-folder (models, controllers, views). The files consist of tests written for the project.
 
+To run all tests:
+
+```
+  rspec
+```
+
 ## Example of user flow
 
 After running `ruby app.rb`:
@@ -91,4 +91,7 @@ The output should be `2, 2, NORTH`
 8. Select `REPORT`
 
 The output should be `0, 2, NORTH`
+
+
+## 
 
