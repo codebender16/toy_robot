@@ -94,6 +94,7 @@ class Interface
         when 'PLACE' then commands << place_input
         when 'DONE' then finalised = confirm_commands(commands)
         else 
+          # can add but cant delete yet - need to add delete function
           commands << command
       end
 
