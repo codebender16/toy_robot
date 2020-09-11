@@ -19,24 +19,17 @@ class Interface
     online = true
     # keeps the program running until user aborts
     while online == true
-      spin()
       welcome()
       menu = menu()
       if menu == 'Play'
-        spin()
         name = ask_name()
-        spin()
         create_game(name)
-        commands = create_commands()
-        spin()
-        controller(commands)
+        controller()
         unless play_again?()
-          spin()
-          abort @font.write("Goodbye").colorize(:yellow)
+          quit()
         end
       else
-        spin()
-        abort @font.write("Goodbye").colorize(:yellow)
+        quit()
       end
     end
   end
@@ -44,6 +37,7 @@ class Interface
 # 1. HOMESCREEN
 
   def welcome
+    spin()
     puts @font.write("TOYROBOT").colorize(:blue)
     puts "by Kuan Lee".colorize(:light_blue)
   end
@@ -53,16 +47,22 @@ class Interface
   end
 
   def ask_name
+    spin()
     @prompt.ask("What is your name?", default: "Neverfall")
   end
 
 # 2. SHOW INSTRUCTIONS AND CREATE A GAME ONCE USER SELECTS PLAY
 
   def create_game(name)
+    spin()
     puts "\nINSTRUCTIONS".colorize(:yellow)
+    sleep(1)
     puts "\nHi #{name.colorize(:red).on_blue.underline}, to begin the game, you first need to create a robot"
+    sleep(2)
     puts "\nTo do that, you are required to enter the coordinates of where you would like to place your robot on a table and the direction it is facing."
+    sleep(2)
     puts "\nThe position is represented in this format [x, y] and the directions are NORTH, SOUTH, EAST, WEST."
+    sleep(2)
 
     # create props for game here
     table = Table.new(5, 5)
@@ -73,7 +73,7 @@ class Interface
 # 3. USER TO CREATE COMMANDS AND RETURN A LIST OF COMMANDS
 
   def create_commands
-    
+    spin()
     finalised = false
     commands = []
     
@@ -81,7 +81,8 @@ class Interface
 
       # show running commands
       puts "\n"
-      print commands
+      print "Your running commands: #{commands}" 
+      puts "\n"
       puts "\n"
 
       # user to select commands
@@ -89,7 +90,7 @@ class Interface
       command = @prompt.select("Now we need to form a sequence of commands to run your robot or BACK to return main menu. Please select commands from below: (select at least 1)\n", %w(PLACE MOVE LEFT RIGHT REPORT DONE QUIT))
 
       case command
-        when 'QUIT' then abort @font.write("Thanks").colorize(:yellow)
+        when 'QUIT' then quit()
         when 'PLACE' then commands << place_input
         when 'DONE' then finalised = confirm_commands(commands)
         else 
@@ -113,9 +114,13 @@ class Interface
 
 # 5. INTEGRATE WITH CONTROLLER 
 
-  def controller(commands)
-   # sanitise input - which will ignore commands before PLACE
-   # save commands into an instance variable
+  def controller()
+    
+    # run interface that collects commands from user or allow user to quit at any time
+    commands = create_commands()
+    spin()
+    # sanitise input - which will ignore commands before PLACE
+    # save commands into an instance variable
     @commands = @game.sanitise_input(commands)
 
     # format of PLACE data ['PLACE', x, y, 'DIRECTION']
@@ -185,6 +190,11 @@ class Interface
     @spinner.auto_spin
     sleep(1)
     @spinner.stop
+  end
+
+  def quit
+    spin()
+    abort @font.write("see you").colorize(:yellow)
   end
 
 
