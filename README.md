@@ -1,6 +1,6 @@
 # TOYROBOT SOLUTION 
 
-# Tech Stack and Dependencies
+## Tech Stack and Dependencies
 
 The program runs on Ruby version 2.7.1. If you don't have ruby installed, here is a guide for [ruby installation](https://www.ruby-lang.org/en/documentation/installation/)
 
@@ -95,5 +95,10 @@ The output should be `2, 2, NORTH`
 The output should be `0, 2, NORTH`
 
 
-## 
+## Software Architecture and Design
 
+1. The design of the architecture follows the MVC (Model, View, Controller) architecture. The decision behind this is to ensure that separation of concerns for the app's functionality is exercised.
+2. Test-Driven Development (TDD) is implemented to ensure there is minimal code required to pass unit tests written for each component class.
+3. Directory adheres to standard file management system. `src` folder contains the `spec` (tests) and `lib` (functional code) folders.
+4. Gems listed above are used for testing and visual effect, in order to, enhance the quality of user interaction with the app.
+5. This is work-in-progress and will be continually updated to refactor code and to add new feature such as showing visuals of robot movements on a table.
