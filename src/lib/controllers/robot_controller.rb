@@ -79,5 +79,9 @@ class RobotController
     end
   end
 
+  # check if robot is placed
+  def on_table?
+    !@robot.nil? # returns true if robot is on table
+  end
 
 end

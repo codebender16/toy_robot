@@ -1,4 +1,4 @@
-require_relative 'lib/views/interface.rb'
+require_relative 'src/lib/views/interface.rb'
 
 # render view - similar with react rendering
 

@@ -57,7 +57,7 @@ class Interface
     spin()
     puts "\nINSTRUCTIONS".colorize(:yellow)
     sleep(1)
-    puts "\nHi #{name.colorize(:red).on_blue.underline}, to begin the game, you first need to create a robot"
+    puts "\nHi #{name.colorize(:yellow)}, to begin the game, you first need to create a robot"
     sleep(2)
     puts "\nTo do that, you are required to enter the coordinates of where you would like to place your robot on a table and the direction it is facing."
     sleep(2)
@@ -94,7 +94,6 @@ class Interface
         when 'PLACE' then commands << place_input
         when 'DONE' then finalised = confirm_commands(commands)
         else 
-          # can add but cant delete yet - need to add delete function
           commands << command
       end
 
